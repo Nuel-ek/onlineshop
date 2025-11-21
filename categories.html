@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MyShop — Categories</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><a href="index.html">MyShop</a></div>
+    <div class="search">
+      <input id="searchInput" type="search" placeholder="Search products (e.g. Samsung)" />
+      <button id="searchBtn">Search</button>
+    </div>
+    
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>Categories</h2>
+      <div class="category-panel">
+        <button class="cat-filter" data-cat="all">All</button>
+        <button class="cat-filter" data-cat="electronics">Electronics</button>
+        <button class="cat-filter" data-cat="clothes">Clothes</button>
+        <button class="cat-filter" data-cat="home">Home</button>
+      </div>
+
+      <div id="catGrid" class="grid"></div>
+    </section>
+  </main>
+
+<footer class="mobile-nav">
+    <a  href="index.html">🏠Home</a>
+    <a href="categories.html">📂Categories</a>
+    <a href="cart.html">🛒Cart<span id="cartCountBottom">0</span></a>
+    <a href="wishlist.html">❤Wishlist<span id="wishCountBottom">0</span></a>
+    <a href="account.html">👤Account</a>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>

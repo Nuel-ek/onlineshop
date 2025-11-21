@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M-Pesa Payment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .payment-box {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+    h2 {
+      margin-bottom: 10px;
+      color: #006400;
+    }
+    h3 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #218838;
+    }
+    #status {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #444;
+    }
+    .mobile-nav{
+  position:fixed; 
+  left:0; right:0; 
+  bottom:0; 
+  background:#fff; 
+  display:flex; 
+  justify-content:space-around;
+  padding:8px 0; 
+  box-shadow:0 -4px 18px rgba(2,6,23,0.06);
+}
+.mobile-nav a{
+  background:transparent; 
+  border:0; 
+  font-size:18px; 
+  padding:4px
+}
+
+.mobile-nav a:hover{
+  background-color: #7920c2;
+}
+  </style>
+</head>
+<body>
+  <div class="payment-box">
+    <h2>M-Pesa Payment</h2>
+    <h3 id="amountDisplay"></h3>
+    <form id="mpesaForm">
+      <input type="tel" id="mpesaNumber" placeholder="Enter M-Pesa number" required>
+      <button type="submit">Pay Now</button>
+    </form>
+    <div id="status"></div>
+  </div>
+
+  <footer class="mobile-nav">
+    <a  href="index.html">🏠Home</a>
+    <a href="categories.html">📂Categories</a>
+    <a href="cart.html">🛒Cart<span id="cartCountBottom">0</span></a>
+    <a href="wishlist.html">❤Wishlist<span id="wishCountBottom">0</span></a>
+    <a href="account.html">👤Account</a>
+  </footer>
+
+
+  <script>
+    // Show amount from localStorage
+    var total = localStorage.getItem('pending_total') || 0;
+    document.getElementById('amountDisplay').textContent =
+      'Pay KSh ' + Number(total).toLocaleString() + ' via Mpesa';
+
+    document.getElementById('mpesaForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      var phone = document.getElementById('mpesaNumber').value;
+
+      // Step 1: fake processing
+      document.getElementById('status').textContent =
+        'Sending prompt to ' + phone + ' ...';
+
+      // Step 2: after 3 seconds simulate payment success
+      setTimeout(function(){
+        document.getElementById('status').textContent = '✅ Purchase successful!';
+
+        // clear cart after purchase
+        // mark items in cart as purchased instead of clearing them
+// mark items as purchased instead of clearing
+var cart = JSON.parse(localStorage.getItem('demo_cart') || '[]');
+for (var i = 0; i < cart.length; i++) {
+  cart[i].purchased = true;
+}
+localStorage.setItem('demo_cart', JSON.stringify(cart));
+
+localStorage.removeItem('pending_total'); // just clear pending amount
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
